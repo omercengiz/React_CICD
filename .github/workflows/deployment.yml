@@ -3,15 +3,30 @@ on:
    push
 jobs:
     Test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Get code
-              uses: actions/checkout@v3
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                node-version: 18
-            - name: Install dependencies
-              run: npm ci
-            - name: Run tests
-              run: npm test
+      runs-on: ubuntu-latest
+      steps:
+          - name: Get code
+            uses: actions/checkout@v3
+          - name: Setup Node.js
+            uses: actions/setup-node@v3
+            with:
+              node-version: 18
+          - name: Install dependencies
+            run: npm ci
+          - name: Run tests
+            run: npm test
+    Deploy:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Get code
+            uses: actions/checkout@v3
+          - name: Setup Node.js
+            uses: actions/setup-node@v3
+            with:
+              node-version: 18
+          - name: Install dependencies
+            run: npm ci
+          - name: Build Project
+            run: npm run build
+          - name: Deploy to AWS
+            run: echo "Deploying to AWS"
